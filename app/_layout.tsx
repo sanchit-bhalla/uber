@@ -7,13 +7,11 @@ import "react-native-reanimated";
 import { tokenCache } from "@/lib/auth";
 
 import { LogBox } from "react-native";
-import { EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY } from "@/constants/customEnv";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-console.log({ EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY });
-const publishableKey = EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
+const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
 if (!publishableKey) {
   throw new Error(
     "Missing Publishable Key. Please set EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY in your .env"

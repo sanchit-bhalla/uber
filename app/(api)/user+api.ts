@@ -1,8 +1,7 @@
 import { neon } from "@neondatabase/serverless";
-import { EXPO_PUBLIC_DATABASE_URL } from "@/constants/customEnv";
 export async function POST(request: Request) {
   try {
-    const sql = neon(`${EXPO_PUBLIC_DATABASE_URL}`);
+    const sql = neon(`${process.env.EXPO_PUBLIC_DATABASE_URL}`);
     const { name, email, clerkId } = await request.json();
 
     if (!name || !email || !clerkId) {
@@ -12,6 +11,7 @@ export async function POST(request: Request) {
       );
     }
 
+    console.log("POST REQUEST: ", { name, email });
     const response = await sql`
       INSERT INTO users (
         name, 
